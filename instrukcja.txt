@@ -1,0 +1,46 @@
+Aplikacja korzysta z bazy danych działającej w dockerUruchomienie bazy danych:cd Database/
+docker-compose up
+uruchomienie aplikacji
+mvn spring-boot:run
+
+Przykładowe wywołania komendy curl sprawdzające działanie aplikacji
+
+curl --location --request GET 'http://localhost:8080/pracownik/'
+
+curl --location --request GET 'http://localhost:8080/pracownik/aktywny/'
+
+curl --location --request POST 'http://localhost:8080/pracownik/' \
+--header 'Content-Type: application/json' \
+--data-raw ' {
+
+        "name": "simpleWorker"
+    }'
+
+
+curl --location --request POST 'http://localhost:8080/pracownik/aktywny/' \
+--header 'Content-Type: application/json' \
+--data-raw ' {  "name": "activeWorker",
+    "salary": 13.1,
+    "dataZatrudnienia": "2021-02-01"
+
+    }'
+
+
+curl --location --request PUT 'http://localhost:8080/pracownik/{id}/' \
+--header 'Content-Type: application/json' \
+--data-raw ' {
+
+        "name": "simpleWorkerUpdate"
+    }'
+
+curl --location --request PUT 'http://localhost:8080/pracownik/aktywny/{id}/' \
+--header 'Content-Type: application/json' \
+--data-raw ' {  "name": "activeWorkerUpdated",
+    "salary": 14.1,
+    "dataZatrudnienia": "2021-04-01"
+
+    }'
+
+curl --location --request DELETE 'http://localhost:8080/pracownik/{id}/'
+
+curl --location --request DELETE 'http://localhost:8080/pracownik/aktywny/{id}/'
